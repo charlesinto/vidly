@@ -11,7 +11,8 @@
     }
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>Customer</th>
+            <th>Discount</th>
         </tr>
     </thead>
    @{ 
@@ -26,6 +27,7 @@
                                @Html.ActionLink(customer.Name, "edit", "customers", new { id = customer.Id },
                                 null)
                             </td>
+                           <td>@customer.membershipType.DiscountRate%</td>
                        </tr>
                    }
                }

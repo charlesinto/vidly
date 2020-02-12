@@ -55,6 +55,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -159,6 +162,10 @@
     <Compile Include="Migrations\202002121552490_PopulateMemebershipType1.designer.cs">
       <DependentUpon>202002121552490_PopulateMemebershipType1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002122111468_ApplyAnnotationToCustomerName.cs" />
+    <Compile Include="Migrations\202002122111468_ApplyAnnotationToCustomerName.designer.cs">
+      <DependentUpon>202002122111468_ApplyAnnotationToCustomerName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -248,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002121552490_PopulateMemebershipType1.resx">
       <DependentUpon>202002121552490_PopulateMemebershipType1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002122111468_ApplyAnnotationToCustomerName.resx">
+      <DependentUpon>202002122111468_ApplyAnnotationToCustomerName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,7 +9,10 @@ namespace vidly.Models
     {
         public int Id { get; set; }
         private string _name;
-        public string Name
+        public MembershipType membershipType { get; set; }
+        public byte MembershipTypeId { get; set; }
+        public bool IsSubscribedToNewsLetter { get; set; }
+        public string Name 
         {
             get
             {
@@ -20,6 +23,7 @@ namespace vidly.Models
                 _name = value;
             }
         }
+        
         public Customer() { }
         public Customer(int id, string name)
         {

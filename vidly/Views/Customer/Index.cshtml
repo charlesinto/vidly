@@ -1,0 +1,43 @@
+﻿@model IEnumerable<vidly.Models.Customer> 
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Customers</h2>
+<hr />
+<table class="table table-bordered table-hover">
+    @{ 
+        var customerCount = Model.Count();
+    }
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+        </tr>
+    </thead>
+   @{ 
+       if(customerCount > 0)
+       {
+           <tbody>
+               @{ 
+                   foreach (var customer in Model)
+                   {
+                       <tr>
+                            <td>
+                               @Html.ActionLink(customer.Name, "edit", "customers", new { id = customer.Id },
+                                null)
+                            </td>
+                       </tr>
+                   }
+               }
+           </tbody>
+        }
+        else
+        {
+            <tr>
+                <td>Customer List is Empty</td>
+            </tr>
+        }
+
+   }
+</table>
+

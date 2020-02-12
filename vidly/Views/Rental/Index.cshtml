@@ -1,0 +1,54 @@
+﻿@model IEnumerable<vidly.ViewModel.Rental>
+@{
+    ViewBag.Title = "Rental";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movie Rental</h2>
+<hr />
+
+<table class="table table-bordered table-hover">
+    @{
+        var rentalCount = Model.Count();
+    }
+    <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Customer Name</th>
+        </tr>
+    </thead>
+    @{
+        if (rentalCount > 0)
+        {
+            <tbody>
+                @{
+                    foreach (var rental in Model)
+                    {
+                        foreach(var customer in rental.customer)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(rental.movie.Name, "edit", "movie", new { id = rental.movie.Id },
+                                        null)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(customer.Name, "edit", "customers", new { id = customer.Id },
+                                        null)
+                                </td>
+                            </tr>
+                        }
+                                
+                    }
+                }
+            </tbody>
+        }
+        else
+        {
+            <tr>
+                <td>Rental List is Empty</td>
+            </tr>
+        }
+
+    }
+</table>
+

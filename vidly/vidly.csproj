@@ -170,8 +170,29 @@
     <Compile Include="Migrations\202002122327090_AddMembershipName.designer.cs">
       <DependentUpon>202002122327090_AddMembershipName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002122342015_AddBirthdayToCustomer.cs" />
+    <Compile Include="Migrations\202002122342015_AddBirthdayToCustomer.designer.cs">
+      <DependentUpon>202002122342015_AddBirthdayToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002130006303_ChangeBirthday.cs" />
+    <Compile Include="Migrations\202002130006303_ChangeBirthday.designer.cs">
+      <DependentUpon>202002130006303_ChangeBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002130011152_AddGenreToMovie.cs" />
+    <Compile Include="Migrations\202002130011152_AddGenreToMovie.designer.cs">
+      <DependentUpon>202002130011152_AddGenreToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002130036512_ModifyGenreTypeInMovie.cs" />
+    <Compile Include="Migrations\202002130036512_ModifyGenreTypeInMovie.designer.cs">
+      <DependentUpon>202002130036512_ModifyGenreTypeInMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002130049303_RemoveRequiredFromGenreType.cs" />
+    <Compile Include="Migrations\202002130049303_RemoveRequiredFromGenreType.designer.cs">
+      <DependentUpon>202002130049303_RemoveRequiredFromGenreType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\GenreType.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MyDbContext.cs" />
@@ -265,6 +286,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002122327090_AddMembershipName.resx">
       <DependentUpon>202002122327090_AddMembershipName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002122342015_AddBirthdayToCustomer.resx">
+      <DependentUpon>202002122342015_AddBirthdayToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002130006303_ChangeBirthday.resx">
+      <DependentUpon>202002130006303_ChangeBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002130011152_AddGenreToMovie.resx">
+      <DependentUpon>202002130011152_AddGenreToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002130036512_ModifyGenreTypeInMovie.resx">
+      <DependentUpon>202002130036512_ModifyGenreTypeInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002130049303_RemoveRequiredFromGenreType.resx">
+      <DependentUpon>202002130049303_RemoveRequiredFromGenreType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

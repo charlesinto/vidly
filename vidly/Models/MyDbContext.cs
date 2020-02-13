@@ -11,8 +11,8 @@ namespace vidly.Models
     public class MyDbContext : DbContext
     {
         public DbSet<Customer> customers { get; set; }
-        public DbSet<Movie> movie { get; set; }
-        public DbSet<Rental> rental { get; set; }
+        public DbSet<Movie> movies { get; set; }
+        public DbSet<Rental> rentals { get; set; }
 
         public MyDbContext() { }
     }

@@ -19,6 +19,10 @@ namespace vidly.Controllers
             //initializeCustomers();
         }
         // GET: Customer
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         [Route("customers")]
         public ActionResult Index()
         {
@@ -29,17 +33,8 @@ namespace vidly.Controllers
         public ActionResult GetCustomer(int id)
         {
             //var found = false;
-            var customer = _context.customers.SingleOrDefault(item => item.Id == id);
-            //var selectedCustomer = new Customer();
-            //foreach(var customer in customers)
-            //{
-            //    if(customer.Id == id)
-            //    {
-            //        found = true;
-            //        selectedCustomer = customer;
-            //    }
-            //}
-            if (customer != null)
+            var customer = _context.customers.Include(c => c.membershipType).SingleOrDefault(item => item.Id == id);
+                        if (customer != null)
                 return View(customer);
             return HttpNotFound();
         }

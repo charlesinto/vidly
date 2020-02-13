@@ -13,10 +13,7 @@ namespace vidly.Controllers
         private List<Rental> rental = new List<Rental>();
         public RentalController()
         {
-            rental.Add(new Rental(new List<Customer> { 
-            new Customer(1, "Busola Dakore"),
-            new Customer(2, "Lina Ekeh"),
-            new Customer(3, "Ugonma Amah")}, new Movie(1, "Shrek")));
+            
         }
         // GET: Rental
         [Route("rentals")]

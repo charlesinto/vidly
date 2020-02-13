@@ -26,7 +26,7 @@ namespace vidly.Models
                 _name = value;
             }
         }
-        
+        public string birthdate { get; set; }
         public Customer() { }
         public Customer(int id, string name)
         {

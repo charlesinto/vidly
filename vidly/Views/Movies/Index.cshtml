@@ -12,7 +12,8 @@
     }
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>Movie</th>
+            <th>Genre</th>
         </tr>
     </thead>
     @{
@@ -26,6 +27,9 @@
                             <td>
                                 @Html.ActionLink(movie.Name, "edit", "movie", new { id = movie.Id },
                                  null)
+                            </td>
+                            <td>
+                                @movie.genreType.Name
                             </td>
                         </tr>
                     }

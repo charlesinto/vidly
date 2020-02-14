@@ -253,6 +253,9 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customer\New.cshtml" />
     <Content Include="Views\Movies\CREATE.cshtml" />
+    <Content Include="Views\Shared\_slider.cshtml" />
+    <Content Include="Views\Shared\_AppLayout.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using vidly.Models;
+using vidly.ViewModel;
 
 namespace vidly.Controllers
 {
@@ -31,6 +32,32 @@ namespace vidly.Controllers
             var movie = new Movie() { Name="Shrek" };
             return View(movie);
         }
+
+        [Route("Movies/Create")]
+        public ActionResult Create()
+        {
+            var genres = _context.genreTypes.ToList();
+            var movieModel = new movieFormModel { genreTypes = genres };
+            return View(movieModel);
+        }
+        public ActionResult Save(Movie movie)
+        {
+            if(movie.Id == 0)
+            {
+                _context.movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.genreTypeId = movie.genreTypeId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+            }
+            
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Movies");
+        }
         public ActionResult GameRelease(int? year, string sortBy)
         {
             if (!year.HasValue)
@@ -43,10 +70,14 @@ namespace vidly.Controllers
         [Route("movie/edit/{id}")]
         public ActionResult getMovie(int id)
         {
-            var movie = _context.movies.Include("genreType").SingleOrDefault(item => item.Id == id);
-            
+            var movieSelected = _context.movies.Include("genreType").SingleOrDefault(item => item.Id == id);
+            var genres = _context.genreTypes.ToList();
+            var movieModel = new movieFormModel {
+                                    genreTypes = genres,
+                                    movie = movieSelected
+                                };
             if (movie != null)
-                return View(movie);
+                return View("Create", movieModel);
             return HttpNotFound();
 
         }

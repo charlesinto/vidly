@@ -1,0 +1,58 @@
+﻿@model vidly.ViewModel.movieFormModel
+@{
+    ViewBag.Title = "Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Movie</h2>
+
+@using (Html.BeginForm("Save", "Movies"))
+{
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(m => m.movie.Name, "Movie Name")
+            @Html.TextBoxFor(m => m.movie.Name, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(m => m.movie.ReleaseDate, "Release Date")
+            @Html.TextBoxFor(m => m.movie.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(m => m.movie.NumberInStock, "Number in stock")
+            @Html.TextBoxFor(m => m.movie.NumberInStock, new { @class = "form-control", type = "number" })
+        </div>
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(m => m.movie.DateAdded, "Date Added")
+            @Html.TextBoxFor(m => m.movie.DateAdded,"{0:d MMM yyyy}", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(m => m.movie.genreTypeId, "Genre")
+            @Html.DropDownListFor(m => m.movie.genreTypeId, new SelectList(Model.genreTypes, "Id", "Name", Model.movie?.genreTypeId)
+           , "Select Genre", new { @class = "form-control"})
+        </div>
+        @Html.HiddenFor(m => m.movie.Id)
+        <div class="col-md-6 col-sm-12 form-group">
+            <div class="row">
+                <div class="col-md-12 col-sm-12" style="display:flex; justify-content:flex-end">
+                    @Html.ActionLink("Cancel", "Index", "Movies", null, new { @class = "btn btn-danger" })
+                    @{
+                        if (Model.movie == null)
+                        {
+                            <button class="btn btn-primary" style="margin-left: 8px" type="submit">Save</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary" style="margin-left: 8px" type="submit">Update</button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

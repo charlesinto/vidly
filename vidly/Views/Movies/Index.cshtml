@@ -6,43 +6,58 @@
 
 <h2>Movie</h2>
 <hr />
-<table class="table table-bordered table-hover">
-    @{
-        var movieCount = Model.Count();
-    }
-    <thead>
-        <tr>
-            <th>Movie</th>
-            <th>Genre</th>
-        </tr>
-    </thead>
-    @{
-        if (movieCount > 0)
-        {
-            <tbody>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-8"></div>
+        <div class="col-md-4 col-sm-4" style="margin-bottom: 2em; display:flex; justify-content:flex-end">
+            @Html.ActionLink("Add Movie", "Create", "Movies", null, new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <table class="table table-bordered table-hover">
                 @{
-                    foreach (var movie in Model)
+                    var movieCount = Model.Count();
+                }
+                <thead>
+                    <tr>
+                        <th>Movie</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                @{
+                    if (movieCount > 0)
+                    {
+                        <tbody>
+                            @{
+                                foreach (var movie in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink(movie.Name, "edit", "movie", new { id = movie.Id },
+                                             null)
+                                        </td>
+                                        <td>
+                                            @movie.genreType.Name
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    }
+                    else
                     {
                         <tr>
-                            <td>
-                                @Html.ActionLink(movie.Name, "edit", "movie", new { id = movie.Id },
-                                 null)
-                            </td>
-                            <td>
-                                @movie.genreType.Name
-                            </td>
+                            <td>Movie List is Empty</td>
                         </tr>
                     }
+
                 }
-            </tbody>
-        }
-        else
-        {
-            <tr>
-                <td>Movie List is Empty</td>
-            </tr>
-        }
+            </table>
 
-    }
-</table>
 
+        </div>
+    </div>
+</div>

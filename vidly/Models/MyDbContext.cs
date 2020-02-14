@@ -15,6 +15,8 @@ namespace vidly.Models
         public DbSet<Rental> rentals { get; set; }
         public DbSet<MembershipType> membershipTypes { get; set; }
 
+        public DbSet<GenreType> genreTypes { get; set; }
+
         public MyDbContext() { }
     }
 }

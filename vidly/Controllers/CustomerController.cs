@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Web.Mvc;
 using vidly.Models;
+using vidly.ViewModel;
 
 namespace vidly.Controllers
 {
@@ -33,17 +34,41 @@ namespace vidly.Controllers
         public ActionResult GetCustomer(int id)
         {
             //var found = false;
-            var customer = _context.customers.Include(c => c.membershipType).SingleOrDefault(item => item.Id == id);
-                        if (customer != null)
-                return View(customer);
+            var _customer = _context.customers.Include(c => c.membershipType).SingleOrDefault(item => item.Id == id);
+            if (_customer != null)
+            {
+                var membershipType = _context.membershipTypes.ToList();
+                var customerFormModel = new CustomerFormModel { customer = _customer, membershipTypes = membershipType };
+                return View("New", customerFormModel);
+            }             
             return HttpNotFound();
         }
-        private void initializeCustomers()
+        [Route("customer/new")]
+        public ActionResult New()
         {
-            customers.Add(new Customer(1, "Charles"));
-            customers.Add(new Customer(2, "Lina Onuorah"));
-            customers.Add(new Customer(3, "Ugonma Onuorah"));
-            customers.Add(new Customer(4, "Chioma Odoguw okeson"));
+            var memeberShipType = _context.membershipTypes.ToList();
+            var customerFormModel = new CustomerFormModel{ membershipTypes = memeberShipType };
+            return View(customerFormModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            if(customer.Id == 0)
+            {
+                _context.customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.customers.Single(cust => cust.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.birthdate = customer.birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+            
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customer");
         }
     }
 }

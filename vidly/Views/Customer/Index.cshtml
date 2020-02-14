@@ -5,43 +5,55 @@
 }
 <h2>Customers</h2>
 <hr />
-<table class="table table-bordered table-hover">
-    @{ 
-        var customerCount = Model.Count();
-    }
-    <thead>
-        <tr>
-            <th>Customer</th>
-            <th>Membership Type</th>
-            <th>Discount</th>
-        </tr>
-    </thead>
-   @{ 
-       if(customerCount > 0)
-       {
-           <tbody>
-               @{ 
-                   foreach (var customer in Model)
-                   {
-                              <tr>
-                                  <td>
-                                      @Html.ActionLink(customer.Name, "edit", "customers", new { id = customer.Id },
-                                       null)
-                                  </td>
-                                  <td>@customer.membershipType.Name</td>
-                                  <td>@customer.membershipType.DiscountRate%</td>
-                              </tr>
-                   }
-               }
-           </tbody>
-        }
-        else
-        {
-            <tr>
-                <td>Customer List is Empty</td>
-            </tr>
-        }
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-8"></div>
+        <div class="col-md-4 col-sm-4" style="margin-bottom: 2em; display:flex; justify-content:flex-end">
+            @Html.ActionLink("Add Customer", "New", "Customer", null, new { @class = "btn btn-primary" })
 
-   }
-</table>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            @{
+                var customerCount = Model.Count();
+            }
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Membership Type</th>
+                    <th>Discount</th>
+                </tr>
+            </thead>
+            @{
+                if (customerCount > 0)
+                {
+                    <tbody>
+                        @{
+                            foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(customer.Name, "edit", "customers", new { id = customer.Id },
+                                         null)
+                                    </td>
+                                    <td>@customer.membershipType.Name</td>
+                                    <td>@customer.membershipType.DiscountRate%</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                }
+                else
+                {
+                    <tr>
+                        <td>Customer List is Empty</td>
+                    </tr>
+                }
+
+            }
+        </table>
+    </div>
+</div>
+
 

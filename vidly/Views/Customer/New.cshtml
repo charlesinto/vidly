@@ -1,0 +1,81 @@
+﻿@model vidly.ViewModel.CustomerFormModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer</h2>
+<hr />
+
+@using (Html.BeginForm("CREATE", "Customer"))
+{
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.customer.Name)
+                    @Html.TextBoxFor(m => m.customer.Name, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.customer.birthdate)
+                    @Html.TextBoxFor(m => m.customer.birthdate,"{0:d MMM yyyy}", new { @class = "form-control" })
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.customer.MembershipTypeId)
+                    @Html.DropDownListFor(m => m.customer.MembershipTypeId, 
+                            new SelectList(Model.membershipTypes,"Id", "Name", Model.customer?.MembershipTypeId ),"Select Memebership Type",
+                            new { @class="form-control" })
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-2">
+                <div class="form-group form-check">
+                    @Html.CheckBoxFor(m => m.customer.IsSubscribedToNewsLetter, new { @class = "form-check-input" })
+                    @Html.LabelFor(m => m.customer.IsSubscribedToNewsLetter)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @Html.HiddenFor(m => m.customer.Id)
+            @{
+                if (Model.customer != null)
+                {
+                        <div class="col-md-12 col-sm-8 d-flex flex-row-reverse" style="display:flex;justify-content:flex-end">
+                            
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    @Html.ActionLink("Cancel", "Index", "Customer", null, new { @class = "btn btn-danger" })
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <button style="width:10rem" type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                }
+                else
+                {
+                    <div class="col-md-12 col-sm-12" style="display:flex;justify-content:flex-end">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.ActionLink("Cancel", "Index", "Customer",null, new { @class = "btn btn-danger"})
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+    
+}

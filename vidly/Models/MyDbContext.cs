@@ -13,6 +13,7 @@ namespace vidly.Models
         public DbSet<Customer> customers { get; set; }
         public DbSet<Movie> movies { get; set; }
         public DbSet<Rental> rentals { get; set; }
+        public DbSet<MembershipType> membershipTypes { get; set; }
 
         public MyDbContext() { }
     }

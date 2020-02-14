@@ -11,10 +11,16 @@ namespace vidly.Models
         public int Id { get; set; }
         private string _name;
         public MembershipType membershipType { get; set; }
+
+        [Display(Name ="Membership Type")]
         public byte MembershipTypeId { get; set; }
+
+        [Display(Name ="Subscribe to Newsletter?")]
         public bool IsSubscribedToNewsLetter { get; set; }
         [Required]
         [StringLength(255)]
+
+        [Display(Name ="Customer Name")]
         public string Name 
         {
             get
@@ -26,7 +32,8 @@ namespace vidly.Models
                 _name = value;
             }
         }
-        public string birthdate { get; set; }
+        [Display(Name = "Date of Birth")]
+        public DateTime birthdate { get; set; }
         public Customer() { }
         public Customer(int id, string name)
         {
